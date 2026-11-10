@@ -3,6 +3,7 @@
 use App\Models\Comment;
 use App\Models\Phone;
 use App\Models\Post;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -53,3 +54,22 @@ Route::get('prueba-1-m',function(){
     ]);
     return 'comentario creado';
 });
+
+Route::get('prueba-m-m',function(){
+    // Tag::create([
+    //     'name'=> 'Frontend'
+    // ]);
+
+    // $post = Post::find(1);
+    // return $post;
+
+    $post = Post::find(1);
+    // $post->tags()->attach([1,2]); //asignar valores a la tabla pivote de union
+    // return $post->tags; //recupero etiquetas asociadas al post    
+
+    // $post->tags()->detach([2]); //quita relacion con la tabla pivote
+
+    $post->tags()->sync([1,3]); //verifica que la etiqueta no esten agregadas ya para no volver a agregarlas, pero si tambien elimina etiquetas que no esten asociadas
+    return $post->tags;
+});
+
