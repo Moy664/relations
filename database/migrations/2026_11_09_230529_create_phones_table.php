@@ -14,7 +14,10 @@ return new class extends Migration
         Schema::create('phones', function (Blueprint $table) {
             $table->id();
             $table->string('number');
-            $table->unsignedBigInteger('contact_id');
+            // $table->unsignedBigInteger('user_id'); // si se utiliza la funcion foreignId tambien crea la columna
+            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');//restriccion de llave foranea
+            $table->foreignId('user_id')->constrained()->onDelete('cascade')->onUpdate('cascade'); //realiza lo mismo que la linea anterior solo que funciona con convenciones 
+            // $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');//si se le pone set null, si se borra un usuario la tabla que este relacionada se considerara nulo, es necesario establecer que permite valores nulables
             $table->timestamps();
         });
     }
