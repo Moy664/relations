@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Comment;
 use App\Models\Phone;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -26,4 +28,28 @@ Route::get('prueba',function(){
     //seleccionar la tabla user desde phone
     $phone = Phone::where('id',1)->with('user')->first();
     return $phone;
+});
+
+Route::get('prueba-1-m',function(){
+    // $post = Post::create([
+    //     'title' => 'Post 2',
+    //     'content' => 'Contenido 2',
+    // ]);
+    // Comment::create([
+    //     'content'=>'comentario 2',
+    //     'post_id' => 1,
+    // ]);
+
+    // $post = Post::find(1);
+    // return $post->comments;
+
+    // $comment = Comment::where('id',1)->with('post')->first();
+    // return $comment;
+
+    $post = Post::find(2);
+    //se crea un comentario en base al un post que ya fue creado
+    $post->comments()->create([
+        'content'=>'comentario de prueba'
+    ]);
+    return 'comentario creado';
 });
