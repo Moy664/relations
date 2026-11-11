@@ -117,3 +117,8 @@ Route::get('prueba-poli-1-m',function(){
     return $comment->commentable;
 });
 
+Route::get('prueba-poli-m-m',function(){
+    $post = Post::find(1);
+    $post->tags()->detach([1]);
+});
+

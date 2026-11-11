@@ -33,7 +33,12 @@ class Post extends Model
     }
 
     //relacion muchos a muchos
+    // public function tags(){
+    //     return $this->belongsToMany(Tag::class); //si no se siguio la convecion de una tabla pivote es necesario poner una coma y especificar el nombre de la tabla
+    // }
+
+    //Realcion polimorfica muchos a muchos
     public function tags(){
-        return $this->belongsToMany(Tag::class); //si no se siguio la convecion de una tabla pivote es necesario poner una coma y especificar el nombre de la tabla
+        return $this->morphToMany(Tag::class,'taggable');
     }
 }
