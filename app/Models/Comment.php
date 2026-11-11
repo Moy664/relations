@@ -11,10 +11,18 @@ class Comment extends Model
     
     protected $fillable =[
         'content',
-        'post_id',
+        // 'post_id',
+        'commentable_id',
+        'commentable_type',
     ];
 
-    public function post(){
-        return $this->belongsTo(Post::class);
-    }
+    //Relacion 1 a muchos
+    // public function post(){
+    //     return $this->belongsTo(Post::class);
+    // }
+
+    // Relacion polimorfica 1 a muchos
+    public function commentable(){
+        return $this->morphTo();
+    }   
 }

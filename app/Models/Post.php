@@ -23,8 +23,13 @@ class Post extends Model
     ];
 
     //relacion 1 a muchos
+    // public function comments(){
+    //     return $this->hasMany(Comment::class); //funcion 1 a muchos
+    // }
+
+    //Relacion polimorfica 1 a muchos
     public function comments(){
-        return $this->hasMany(Comment::class); //funcion 1 a muchos
+        return $this->morphMany(Comment::class,'commentable');
     }
 
     //relacion muchos a muchos

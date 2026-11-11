@@ -95,4 +95,25 @@ Route::get('prueba-poli-1-1',function(){
         'number'=> '1234567890',
     ]);
 });
+Route::get('prueba-poli-1-m',function(){
+    Post::create([
+        'title' => 'Post 2',
+        'content' => 'Contenido 2',
+    ]);
+
+    // Comment::create([
+    //     'content' => 'Este es un contenido de prueba',
+    //     'commentable_id' => $post->id,
+    //     'commentable_type' => Post::class,
+    // ]);
+
+    // $post = Post::find(1);
+    // $post->comments()->create([
+    //     'content'=> 'Este es un contenido de prueba',
+    // ]);
+
+    //Forma de recuperar el post desde el comentario
+    $comment = Comment::find(1);
+    return $comment->commentable;
+});
 
