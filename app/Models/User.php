@@ -47,7 +47,8 @@ class User extends Authenticatable
     }
 
     public function phone(){
-        return $this->hasOne(Phone::class); //relacionar datos con tablas con relacion 1 - 1
+        // return $this->hasOne(Phone::class); //relacionar datos con tablas con relacion 1 - 1
         // return $this->hasOne(Phone::class,'user_id','id'); // si no se siguen las conveciones es necesario especificar como se llaman las llaves primarias y foraneas para realizar la relacion
+        return $this->morphOne(Phone::class,'phoneable');
     }
 }

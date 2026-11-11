@@ -73,3 +73,26 @@ Route::get('prueba-m-m',function(){
     return $post->tags;
 });
 
+Route::get('prueba-poli-1-1',function(){
+    // User::create([
+    //     'name'=>'Moises Otero',
+    //     'email'=> 'moises@gmail.com',
+    //     'password'=> bcrypt('123')
+    // ]);
+    // return User::find(1);
+
+    // Asignar manualmente el telefono al usuario
+    // $user = User::find(1);
+    // Phone::create([
+    //     'number'=> '1234567890',
+    //     'phoneable_id'=> $user->id,
+    //     'phoneable_type'=> User::class,
+    // ]);
+
+    //Asiganar el telefono por medio de la relacion
+    $user = User::find(1);
+    $user->phone()->create([
+        'number'=> '1234567890',
+    ]);
+});
+
